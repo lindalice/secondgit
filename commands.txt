@@ -1,0 +1,55 @@
+cd desktop
+cd secondgit
+git init secondgit
+cd secondgit
+
+echo "# My Project" > README.md
+git add README.md
+git commit -m "Initial commit: Add README.md"
+
+git checkout -b feature_a
+git checkout master
+git checkout -b feature_b
+git checkout master
+git checkout -b feature_c
+
+git checkout feature_a
+echo "Feature A changes" >> README.md
+git commit -am "Add changes for feature A"
+
+git checkout feature_b
+echo "Feature B changes" >> README.md
+git commit -am "Add changes for feature B"
+
+git checkout feature_c
+echo "Feature C changes" >> README.md
+git commit -am "Add changes for feature C"
+
+git checkout master
+git checkout -b feature_d
+
+git merge feature_a
+
+git merge feature_b
+# Edited nano file by deleting "<<<<<<<, =======, and >>>>>>>" and keeping information that is needed
+nano README.md 
+git add README.md
+git commit -m "Merge feature_b, resolve conflicts"
+
+git merge feature_c
+# Edited nano file by deleting "<<<<<<<, =======, and >>>>>>>" and keeping information that is needed
+nano README.md 
+git add README.md
+git commit -m "Merge feature_c, resolve conflicts"
+
+git checkout master
+git merge feature_d
+
+git remote add origin https://github.com/lindalice/secondgit
+git push -u origin master
+git push -u origin feature_a
+git push -u origin feature_b
+git push -u origin feature_c
+git push -u origin feature_d
+
+
